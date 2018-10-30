@@ -1,0 +1,13 @@
+﻿@model AvailableProductsViewModel
+
+<div class="container">
+
+<h1 class="muted">Hi @Model.FirstName. These are the available products to you.</h1>
+<hr />
+
+@foreach (var product in Model.Products)
+{
+    <h2 class="muted">@product.Lender</h2>
+    <h3 class="lead">An @(product.LoanToValue * 100)% LTV Mortage with a @product.InterestType interest rate of @(product.InterestRate * 100)%</h3>
+}
+</div>

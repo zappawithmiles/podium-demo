@@ -1,0 +1,9 @@
+﻿@model ApplicantSuccessViewModel
+
+<div class="container">
+    <div class="panel panel-success">
+        <div class="panel panel-heading">Success!</div>
+                <h3 class="text-center">Hi @Model.FirstName, thanks for joining us.</h3>
+                <h4 class="text-center">Your unique id is @Model.Id. Head on over to the <a asp-controller="Product" asp-action="Index">Products</a> section and see what's available to you.</h4>
+        </div>
+</div>

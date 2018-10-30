@@ -1,0 +1,53 @@
+﻿@model ProductsViewModel
+
+<div class="container">
+    <h1 class="text-muted">These are the available products of which you may be eligble for!</h1>
+    <hr />
+    <p class="lead">To check for eligibility you'll need a unique id. Head over to the<a asp-controller="Applicant" asp-action="Index" asp-> applicants </a> section to get yours. If you already have one, simply fill in the form below.</p>
+    <h2 class="text-muted">What currently offer:</h2>
+    @foreach (var product in Model.Products)
+    {
+        <h3 class="text-muted">@product.Lender</h3>
+        <p class="lead">An @(product.LoanToValue * 100)% LTV Mortage with a @product.InterestType interest rate of @(product.InterestRate * 100)%</p>
+    }
+
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">Available Products</div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form class="form-horizontal" asp-controller="Product" asp-action="GetAvailableProducts" method="get" role="form" id="availableProductsForm">
+
+            <div class="form-group">
+                @Html.AntiForgeryToken()
+                <label class="col-sm-2 control-label">Unique Id</label>
+                <div class="col-sm-2">
+                    <input class="form-control" id="Id" asp-for="ApplicantId" type="text" placeholder="Unique Id" />
+                    <span asp-validation-for="ApplicantId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Property Value</label>
+                <div class="col-sm-2">
+                    <input class="form-control" id="PropertyValue" asp-for="PropertyValue" type="text" placeholder="Property Value" />
+                    <span asp-validation-for="PropertyValue" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Deposit Amount</label>
+                <div class="col-sm-2">
+                    <input class="form-control" id="DepositAmount" asp-for="DepositAmount" type="text" placeholder="Deposit Amount" />
+                    <span asp-validation-for="DepositAmount" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Result</label>
+                <div class="col-sm-10">
+                    <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
